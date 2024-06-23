@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'people-search';
+  people: any;
+
+  getPeople(people:any){
+    this.people = people;
+  }
 }

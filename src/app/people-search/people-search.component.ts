@@ -1,5 +1,5 @@
 import { PeopleService } from './../services/people.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-people-search',
@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class PeopleSearchComponent implements OnInit {
   personName:string = '';
   searchResult: any;
+
+  @Output() onSearchPeople = new EventEmitter();
   constructor(private peopleService:PeopleService) { }
 
   ngOnInit(): void {
@@ -17,6 +19,7 @@ export class PeopleSearchComponent implements OnInit {
   searchForPerson(){
     this.peopleService.getPersons(this.personName).subscribe(response => {
       this.searchResult = response;
+      this.onSearchPeople.emit(response);
     })
   }
 
@@ -24,6 +27,7 @@ export class PeopleSearchComponent implements OnInit {
     this.personName = '';
     this.peopleService.getPersons().subscribe(response => {
       this.searchResult = response;
+      this.onSearchPeople.emit(response);
     })
   }
 }

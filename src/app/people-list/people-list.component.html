@@ -1,1 +1,6 @@
-<p>people-list works!</p>
+<div *ngIf="peopleList">
+  <app-card *ngFor="let personItem of peopleList.results" [person]="personItem"></app-card>
+</div>
+<div *ngIf="!peopleList">
+  No Data Found
+</div>

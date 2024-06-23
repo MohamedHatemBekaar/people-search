@@ -1,1 +1,2 @@
-<app-people-search></app-people-search>
+<app-people-search (onSearchPeople)="getPeople($event)"></app-people-search>
+<app-people-list [peopleList]="people"></app-people-list>
